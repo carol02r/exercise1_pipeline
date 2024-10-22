@@ -43,9 +43,9 @@ transf1(iris)
 I am now creating a second function to transform this dataset. This function will filter the dataset based on species, keeping only versicolor flowers.
 ```{r transformation_2}
 
-transf2 <- function(data){
+transf2 <- function(data_new){
   #return subset where the flower species is versicolor
-  return(subset(data, Species=='versicolor'))
+  return(subset(data_new, Species=='versicolor'))
 }
 ```
 
