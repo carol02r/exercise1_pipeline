@@ -1,0 +1,42 @@
+---
+title: "Dataset Transfomations"
+author: "LSE Candidate Number: 50799"
+date: "Autumn Term 2024"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This function performs an input transformation on a dataset and returns the transformed data.
+More specifically, it normalizes the numeric columns to take values between 0 and 1.
+```{r transformation_1}
+transf1 <- function(data){
+  # find columns with numeric data
+  # sapply only returns a logical vector with TRUEs and FALSEs, not the column names
+  numeric_cols <- names(data)[sapply(data, is.numeric)]
+  
+  # loop through columns
+  for (col in numeric_cols) {
+    
+    # find minimum and maximum values for scale
+    min_val <- min(data[[col]])
+    max_val <- max(data[[col]])
+    
+    # apply normalization formula
+    data[[col]] <- (data[[col]]-min_val)/max_val
+  }
+  
+  #return transformed data
+  return(data)
+}
+```
+
+The dataset I have chosen to work on is 'Iris', which includes a series of measurements from different species of iris flowers.
+
+Here I apply the normalization transformation to the Iris dataset:
+```{r output}
+transf1(iris)
+```
+
